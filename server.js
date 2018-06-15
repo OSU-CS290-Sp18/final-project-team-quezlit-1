@@ -42,7 +42,7 @@ app.post('/addFlash', function (req, res){
 	console.log('front: ', req.body.front);
 	console.log('back: ', req.body.back);
 	if(req.body && req.body.front && req.body.back){
-		db.flashcards.insertOne({
+		db.collection('flashcards').insertOne({
 			front: req.body.front,
 			back: req.body.back
 		});
@@ -53,10 +53,13 @@ app.post('/addFlash', function (req, res){
 	}
 });
 
-app.post('/showBack', function (req, res) {
+app.post('/showBack', function (req, res, next) {
+	console.log('body: ', req.body);
+	console.log('front: ', req.body.front);
 	if(req.body && req.body.front){
 		var flashBack = db.collection('flashcards').find({front: req.body.front});
 		flashBack.next(function (err, back){
+			console.log('back: ', back);
 			if (err) {
 				res.status(500).send('Error fetching flashcard from DB.');
 			}
@@ -64,7 +67,7 @@ app.post('/showBack', function (req, res) {
 				next();
 			}
 			else{
-				res.status(200).send(flashBack);
+				res.status(200).send(back.back);
 			}
 	    });
 	}
@@ -73,8 +76,9 @@ app.post('/showBack', function (req, res) {
 	}
 });
 
-
-	
+app.get('*', function (req, res) {
+  res.status(404).render('errPage');
+});	
 
 
 

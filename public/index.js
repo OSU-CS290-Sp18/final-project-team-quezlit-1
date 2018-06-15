@@ -47,7 +47,7 @@ function addflash(){
    }
 }
 
-var flashContainer = document.querySelectorAll('main.flash-container');
+var flashContainer = document.querySelectorAll('main.flash-container')[0];
 
 function createFlash(frontInput,backInput){
 	var request = new XMLHttpRequest();
@@ -67,7 +67,7 @@ function createFlash(frontInput,backInput){
 		}
 		else{
 			var flash = Handlebars.templates.flashCard(flashObj);
-			flashContainer = document.querySelectorAll('main.flash-container');
+			flashContainer = document.querySelectorAll('main.flash-container')[0];
 			flashContainer.insertAdjacentHTML('beforeend',flash);
 		}
 	});
@@ -81,11 +81,12 @@ function showBack(){
 	back.classList.remove('hidden');
 }
 
-flash-container.addEventListener('click', function (event) {
+flashContainer.addEventListener('click', function (event) {
 	var description;
 	var flash = event.target;
 	var request = new XMLHttpRequest();
 	request.open('POST', '/showBack');
+	console.log(flash.textContent);
 	var front = {
 		front: flash.textContent
 	};
@@ -98,8 +99,10 @@ flash-container.addEventListener('click', function (event) {
 		}
 		else{
 			description = event.target.response;
-			var flashBack = getElementById('flash-back');
-			flashBack.textContent = description;
+			var flashBack = document.getElementById('flash-back');
+			flashBack.childNodes[1].firstChild.textContent = description;
+			var modalBackdrop = document.getElementById('modal-backdrop');
+			modalBackdrop.classList.remove('hidden');
 			flashBack.classList.remove('hidden');
 		}
 	});
