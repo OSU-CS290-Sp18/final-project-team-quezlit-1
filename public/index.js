@@ -116,8 +116,9 @@ closeFlashBackButton.addEventListener('click', closeFlashBack);
 
 function closeFlashBack(){
 	var modalBackdrop = document.getElementById('modal-backdrop');
-	var flashBack = getElementById('flash-back');
+	var flashBack = document.getElementById('flash-back');
 	modalBackdrop.classList.add('hidden');
 	flashBack.classList.add('hidden');
 }
 
+//var deleteFlashButton = document.getElementById('delete-flash')

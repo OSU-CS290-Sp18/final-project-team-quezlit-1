@@ -38,9 +38,9 @@ app.get('/', function (req, res, next){
 });
 
 app.post('/addFlash', function (req, res){
-	console.log('request body: ', req.body);
-	console.log('front: ', req.body.front);
-	console.log('back: ', req.body.back);
+	//console.log('request body: ', req.body);
+	//console.log('front: ', req.body.front);
+	//console.log('back: ', req.body.back);
 	if(req.body && req.body.front && req.body.back){
 		db.collection('flashcards').insertOne({
 			front: req.body.front,
@@ -54,8 +54,8 @@ app.post('/addFlash', function (req, res){
 });
 
 app.post('/showBack', function (req, res, next) {
-	console.log('body: ', req.body);
-	console.log('front: ', req.body.front);
+	//console.log('body: ', req.body);
+	//console.log('front: ', req.body.front);
 	if(req.body && req.body.front){
 		var flashBack = db.collection('flashcards').find({front: req.body.front});
 		flashBack.next(function (err, back){
