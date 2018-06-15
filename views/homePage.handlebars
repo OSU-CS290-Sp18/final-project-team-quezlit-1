@@ -1,0 +1,59 @@
+<header>
+      <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
+
+      <nav class="titleBar">
+        <ul class="titleList">
+	   <li class="item site-title"><i class="fas fa-chess-rook"></i> Quezlit</li> 
+           <li class="item titleBar-search">
+            <input type="text" id="titleBar-search-input" placeholder="Search...">
+            <button type="button" id="titleBar-search-button"><i class="fas fa-search"></i></button>
+          </li>
+       
+        </ul>
+      </nav>
+    </header>
+
+    <main class="flash-container">
+		{{#each flashcards}}
+			{{> flashCard}}
+		{{/each}}
+	</main>
+
+    <button type="button" id="create-flash-button"><i class="fas fa-plus-circle"></i></button>
+    <!-- fas fa-times  fas fa-trash-alt -->
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-flash-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h3>Create a flashcard</h3>
+          <button type="button" class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="flash-input-element">
+            <label for="flash-word-input">Front</label>
+            <textarea id="flash-word-input"></textarea>
+          </div>
+          <div class="flash-input-element">
+            <label for="flash-desc-input">Back</label>
+            <input type="text" id="flash-desc-input">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-cancel-button">Cancel</button>
+          <button type="button" class="modal-accept-button">Create flashcard</button>
+        </div>
+
+      </div>
+    </div>
+	
+	<div id="flash-back" class="hidden">
+		<button type="button" class="flash-back-close">&times;</button>
+		<div class="flash-back-content">
+			<p class="flash-back-text">
+				Description here
+			</P>
+		<button type="button" id="delete-flash"><i class="fas fa-trash-alt"></i></button>
+	</div>
