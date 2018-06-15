@@ -142,5 +142,6 @@ deleteFlashButton.addEventListener('click', function (event) {
 			closeFlashBack();
 		}
 	});
+	request.send(requestBody);
 });
 
