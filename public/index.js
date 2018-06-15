@@ -152,3 +152,37 @@ deleteFlashButton.addEventListener('click', function (event) {
 	request.send(requestBody);
 });
 
+var searchBarButton = document.getElementById('titleBar-search-button');
+
+searchBarButton.addEventListener('click',search);
+
+var searchBar = document.getElementById('titleBar-search-input');
+
+searchBar.addEventListener('input',search);
+
+var flashDeleted = [];
+
+function search(){
+   var flashContainer = document.getElementsByClassName('flash-container')[0];
+   var searchTerm = document.getElementById('titleBar-search-input').value.toLowerCase();
+   var allflashs = document.getElementsByClassName('flash');
+   var flashContent;
+   for(var k = 0; k < 5; k++){
+      if(flashDeleted.length > 0){
+         for(var j = 0; j < flashDeleted.length; j++){
+	    flashContainer.appendChild(flashDeleted.pop());
+         }
+      }
+   }
+   if(searchTerm === ''){
+      return;
+   }
+   for(var i = 0; i < allflashs.length; i++){
+      flashContent = allflashs[i].getElementsByClassName('flash-text')[0].textContent.toLowerCase();
+      if(flashContent.indexOf(searchTerm) === -1){
+		flashDeleted.push(allflashs[i]);
+		flashContainer.removeChild(allflashs[i]);
+		i -= 1;
+      }
+   }
+}
