@@ -81,33 +81,38 @@ function showBack(){
 	back.classList.remove('hidden');
 }
 
+var activeFlash;
+
 flashContainer.addEventListener('click', function (event) {
 	var description;
 	var flash = event.target;
-	var request = new XMLHttpRequest();
-	request.open('POST', '/showBack');
-	console.log(flash.textContent);
-	var front = {
-		front: flash.textContent
-	};
-	var requestBody = JSON.stringify(front);
-	request.setRequestHeader('Content-Type', 'application/json');
-	request.addEventListener('load', function (event) {
-		if(event.target.status !== 200){
-			var message = event.target.response;
-			alert("Error fetching data from database: " + message);
-		}
-		else{
-			description = event.target.response;
-			var flashBack = document.getElementById('flash-back');
-			flashBackContent = document.getElementsByClassName('flash-back-text')[0];
-			flashBackContent.textContent = description;
-			var modalBackdrop = document.getElementById('modal-backdrop');
-			modalBackdrop.classList.remove('hidden');
-			flashBack.classList.remove('hidden');
-		}
-	});
-	request.send(requestBody);
+	if(flash.classList.contains('flash') || flash.classList.contains('flash-text')){
+		activeFlash = flash;
+		var request = new XMLHttpRequest();
+		request.open('POST', '/showBack');
+		//console.log(flash.textContent);
+		var front = {
+			front: flash.textContent
+		};
+		var requestBody = JSON.stringify(front);
+		request.setRequestHeader('Content-Type', 'application/json');
+		request.addEventListener('load', function (event) {
+			if(event.target.status !== 200){
+				var message = event.target.response;
+				alert("Error fetching data from database: " + message);
+			}
+			else{
+				description = event.target.response;
+				var flashBack = document.getElementById('flash-back');
+				flashBackContent = document.getElementsByClassName('flash-back-text')[0];
+				flashBackContent.textContent = description;
+				var modalBackdrop = document.getElementById('modal-backdrop');
+				modalBackdrop.classList.remove('hidden');
+				flashBack.classList.remove('hidden');
+			}
+		});
+		request.send(requestBody);
+	}
 });
 
 var closeFlashBackButton = document.getElementsByClassName('flash-back-close')[0];
@@ -121,4 +126,63 @@ function closeFlashBack(){
 	flashBack.classList.add('hidden');
 }
 
-//var deleteFlashButton = document.getElementById('delete-flash')
+var deleteFlashButton = document.getElementById('delete-flash');
+
+deleteFlashButton.addEventListener('click', function (event) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/deleteFlash');
+	var front = {
+		front: activeFlash.textContent
+	};
+	var requestBody = JSON.stringify(front);
+	request.setRequestHeader('Content-Type', 'application/json');
+	request.addEventListener('load', function (event) {
+		if(event.target.status !== 200){
+			var message = event.target.response;
+			alert("Error deleting data from the DB.: " + message);
+		}
+		else{
+			if(activeFlash.classList.contains('flash-text')){
+				activeFlash = activeFlash.parentNode.parentNode;
+			}
+			flashContainer.removeChild(activeFlash);
+			closeFlashBack();
+		}
+	});
+	request.send(requestBody);
+});
+
+var searchBarButton = document.getElementById('titleBar-search-button');
+
+searchBarButton.addEventListener('click',search);
+
+var searchBar = document.getElementById('titleBar-search-input');
+
+searchBar.addEventListener('input',search);
+
+var flashDeleted = [];
+
+function search(){
+   var flashContainer = document.getElementsByClassName('flash-container')[0];
+   var searchTerm = document.getElementById('titleBar-search-input').value.toLowerCase();
+   var allflashs = document.getElementsByClassName('flash');
+   var flashContent;
+   for(var k = 0; k < 5; k++){
+      if(flashDeleted.length > 0){
+         for(var j = 0; j < flashDeleted.length; j++){
+	    flashContainer.appendChild(flashDeleted.pop());
+         }
+      }
+   }
+   if(searchTerm === ''){
+      return;
+   }
+   for(var i = 0; i < allflashs.length; i++){
+      flashContent = allflashs[i].getElementsByClassName('flash-text')[0].textContent.toLowerCase();
+      if(flashContent.indexOf(searchTerm) === -1){
+		flashDeleted.push(allflashs[i]);
+		flashContainer.removeChild(allflashs[i]);
+		i -= 1;
+      }
+   }
+}
