@@ -3,7 +3,7 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Tweeter</title>
+    <title>Quezlit</title>
 
     <!-- This is a stylesheet that includes the font you should use: Roboto -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
@@ -34,148 +34,112 @@
       </nav>
     </header>
 
-    <main class="twit-container">
+    <main class="flash-container">
 
-      <article class="twit">
-        <div class="twit-icon">
-          <i class="fas fa-bullhorn"></i>
-        </div>
-        <div class="twit-content">
-          <p class="twit-text">
+      <article class="flash">
+        <div class="flash-content">
+		  <p class="flash-text">
             Sitting in web dev... This class is so awesome!
           </p>
-          <p class="twit-attribution">
-            <a href="#">CSMajor2018</a>
-          </p>
-        </div>
+		</div>  
       </article>
 
-      <article class="twit">
-        <div class="twit-content">
-          <p class="twit-text">
+      <article class="flash">
+        <div class="flash-content">  
+		  <p class="flash-text">
             Anyone watch the baseball game last night?  The Beavs are still in 1st place!
           </p>
-          <p class="twit-attribution">
-            <a href="#">BeaverBeliever</a>
-          </p>
-        </div>
+		</div>  
       </article>
 
-      <article class="twit">
-        <div class="twit-icon">
-          <i class="fas fa-bullhorn"></i>
-        </div>
-        <div class="twit-content">
-          <p class="twit-text">
+      <article class="flash">
+	    <div class="flash-content">
+          <p class="flash-text">
             A body in motion must remain in motion unless acted upon by an outside force.
           </p>
-          <p class="twit-attribution">
-            <a href="#">NewtonRulez</a>
-          </p>
-        </div>
+		</div>  
       </article>
 
-      <article class="twit">
-        <div class="twit-icon">
-          <i class="fas fa-bullhorn"></i>
-        </div>
-        <div class="twit-content">
-          <p class="twit-text">
+      <article class="flash">
+        <div class="flash-content">
+          <p class="flash-text">
             Huh?
           </p>
-          <p class="twit-attribution">
-            <a href="#">ConfusedTweeterer</a>
-          </p>
         </div>
       </article>
 
-      <article class="twit">
-        <div class="twit-icon">
-          <i class="fas fa-bullhorn"></i>
-        </div>
-        <div class="twit-content">
-          <p class="twit-text">
+      <article class="flash">
+        <div class="flash-content">
+          <p class="flash-text">
             Why did the calf cross the road?
           </p>
-          <p class="twit-attribution">
-            <a href="#">Setup</a>
-          </p>
         </div>
       </article>
 
-      <article class="twit">
-        <div class="twit-icon">
-          <i class="fas fa-bullhorn"></i>
-        </div>
-        <div class="twit-content">
-          <p class="twit-text">
+      <article class="flash">
+        <div class="flash-content">
+          <p class="flash-text">
             To get to the udder side!
           </p>
-          <p class="twit-attribution">
-            <a href="#">Punchline</a>
-          </p>
         </div>
       </article>
 
-      <article class="twit">
-        <div class="twit-icon">
-          <i class="fas fa-bullhorn"></i>
-        </div>
-        <div class="twit-content">
-          <p class="twit-text">
+      <article class="flash">
+        <div class="flash-content">
+          <p class="flash-text">
             Any questions about flexboxes?
           </p>
-          <p class="twit-attribution">
-            <a href="#">Hess</a>
-          </p>
         </div>
       </article>
 
-      <article class="twit">
-        <div class="twit-icon">
-          <i class="fas fa-bullhorn"></i>
-        </div>
-        <div class="twit-content">
-          <p class="twit-text">
+      <article class="flash">
+        <div class="flash-content">
+          <p class="flash-text">
             Friendly reminder: your taxes were due yesterday.
-          </p>
-          <p class="twit-attribution">
-            <a href="#">TheIRS</a>
           </p>
         </div>
       </article>
 
     </main>
 
-    <button type="button" id="create-twit-button"><i class="fas fa-plus-circle"></i></button>
-
+    <button type="button" id="create-flash-button"><i class="fas fa-plus-circle"></i></button>
+    <!-- fas fa-times  fas fa-trash-alt -->
     <div id="modal-backdrop" class="hidden"></div>
-    <div id="create-twit-modal" class="hidden">
+    <div id="create-flash-modal" class="hidden">
       <div class="modal-dialog">
 
         <div class="modal-header">
-          <h3>Create a Twit</h3>
+          <h3>Create a flashcard</h3>
           <button type="button" class="modal-close-button">&times;</button>
         </div>
 
         <div class="modal-body">
-          <div class="twit-input-element">
-            <label for="twit-text-input">Twit text</label>
-            <textarea id="twit-text-input"></textarea>
+          <div class="flash-input-element">
+            <label for="flash-text-input">flash text</label>
+            <textarea id="flash-text-input"></textarea>
           </div>
-          <div class="twit-input-element">
-            <label for="twit-attribution-input">Author</label>
-            <input type="text" id="twit-attribution-input">
+          <div class="flash-input-element">
+            <label for="flash-attribution-input">Author</label>
+            <input type="text" id="flash-attribution-input">
           </div>
         </div>
 
         <div class="modal-footer">
           <button type="button" class="modal-cancel-button">Cancel</button>
-          <button type="button" class="modal-accept-button">Create Twit</button>
+          <button type="button" class="modal-accept-button">Create flashcard</button>
         </div>
 
       </div>
     </div>
+	
+	<div id="flash-back" class="hidden">
+		<button type="button" class="flash-back-close">&times;</button>
+		<div class="flash-back-content">
+			<p class="flash-back-text">
+				Description here
+			</P>
+		<button type="button" id="delete-flash"><i class="fas fa-trash-alt"></i></button>
+	</div>
 
   </body>
 
