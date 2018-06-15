@@ -100,7 +100,8 @@ flashContainer.addEventListener('click', function (event) {
 		else{
 			description = event.target.response;
 			var flashBack = document.getElementById('flash-back');
-			flashBack.childNodes[1].firstChild.textContent = description;
+			flashBackContent = document.getElementsByClassName('flash-back-text')[0];
+			flashBackContent.textContent = description;
 			var modalBackdrop = document.getElementById('modal-backdrop');
 			modalBackdrop.classList.remove('hidden');
 			flashBack.classList.remove('hidden');
