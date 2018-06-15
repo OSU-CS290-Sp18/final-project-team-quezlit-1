@@ -139,6 +139,7 @@ deleteFlashButton.addEventListener('click', function (event) {
 		}
 		else{
 			flashContainer.removeChild(flash);
+			closeFlashBack();
 		}
 	});
 });
