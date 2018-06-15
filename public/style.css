@@ -158,10 +158,11 @@ body {
   width: auto;
   max-width: 600px;
   min-width: 350px;
-  min-height: 300px;
+  min-height: 200px;
   margin: 40px auto;
   background-color: #fff;
   border-radius: 15px;
+  border: 2px solid #000;
 }
 
 .modal-header {
@@ -171,6 +172,7 @@ body {
 
 .modal-header h3 {
   margin: 0;
+  text-align: center;
   font-size: 28px;
 }
 
@@ -199,19 +201,19 @@ body {
 .flash-input-element label {
   font-weight: 600;
   flex: 1 75px;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .flash-input-element input,
 .flash-input-element textarea {
-  flex: 6 200px;
+  flex: 6 100px;
   padding: 8px;
   font-size: 20px;
   border: 1px solid #aaa;
 }
 
 .flash-input-element textarea {
-  min-height: 64px;
+  min-height: 24px;
 }
 
 .modal-footer {
@@ -223,8 +225,8 @@ body {
 .modal-footer button {
   font-size: 20px;
   background-color: #fff;
-  color: #333;
-  border: 1px solid #333;
+  color: #000;
+  border: 1px solid #000;
   border-radius: 5px;
   padding: 10px;
   margin-right: 20px;
@@ -232,16 +234,16 @@ body {
 }
 
 .modal-footer .modal-cancel-button:hover {
-  background-color: #eee;
+  background-color: #ff6100;
 }
 
 .modal-footer .modal-accept-button {
-  background-color: #319df6;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
 }
 
 .modal-footer .modal-accept-button:hover {
-  background-color: #087dde;
+  background-color: #ff6100;
 }
 
 #flash-back{
@@ -254,6 +256,19 @@ body {
   overflow: scroll;
 }
 
+.flash-back-dialogue {
+  width: 650px;
+  height: 375px;
+  margin: 40px auto;
+  background-color: #ff6100;
+  border-radius: 15px;
+}
+
+.flash-back-header {
+  position: relative;
+  padding: 10px 20px;
+}
+
 .flash-back-close {
   position: absolute;
   right: 10px;
@@ -262,12 +277,40 @@ body {
   border: none;
   background: none;
   padding: 0;
-  cursor: pointer;	
+  cursor: pointer;
 }
 
-.flash-back-content {
-  flex: 1 1 80%;
-  margin: auto;
+.flash-back-body {
+  padding: 20px;
+  width: 475px;
+  height: 200px;
+  margin: 30px auto;
+  background-color: #fff;
+  border-radius: 7px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
 }
 
+.flash-back-content{
+  text-align: center;
+}
 
+.flash-back-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 10px 20px 10px;
+}
+
+.flash-back-footer button {
+  font-size: 15px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.flash-back-footer .delete-flash:hover {
+  background-color: #000;
+}

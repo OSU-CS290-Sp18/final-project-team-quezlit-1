@@ -1,9 +1,8 @@
 <header>
-      <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
-
+      
       <nav class="titleBar">
         <ul class="titleList">
-	   <li class="item site-title"><i class="fas fa-chess-rook"></i> Quezlit</li> 
+	   <li class="item site-title"><i class="fas fa-chess-rook"></i> Quezlit   <i class="fas fa-chess-rook"></i></li> 
            <li class="item titleBar-search">
             <input type="text" id="titleBar-search-input" placeholder="Search...">
             <button type="button" id="titleBar-search-button"><i class="fas fa-search"></i></button>
@@ -33,11 +32,11 @@
         <div class="modal-body">
           <div class="flash-input-element">
             <label for="flash-word-input">Front</label>
-            <textarea id="flash-word-input"></textarea>
+            <input type="text" id="flash-desc-input">
           </div>
           <div class="flash-input-element">
             <label for="flash-desc-input">Back</label>
-            <input type="text" id="flash-desc-input">
+            <textarea id="flash-word-input"></textarea>
           </div>
         </div>
 
@@ -48,13 +47,21 @@
 
       </div>
     </div>
-	
-	<div id="flash-back" class="hidden">
-		<button type="button" class="flash-back-close">&times;</button>
-		<div class="flash-back-content">
-			<p class="flash-back-text">
-				Description here
-			</p>
-		</div>
-		<button type="button" id="delete-flash"><i class="fas fa-trash-alt"></i></button>
-	</div>
+
+    <div id="flash-back" class="hidden">
+       <div class = "flash-back-dialogue"> 
+	  <div class="flash-back-header">        
+	    <button type="button" class="flash-back-close">&times;</button>
+	  </div>
+          <div class = "flash-back-body">
+	    <div class="flash-back-content">
+	      <p class="flash-back-text">
+	        Description here
+	      </p>
+	    </div>
+          </div>
+	  <div class = "flash-back-footer">
+           <button type="button" id="delete-flash"><i class="fas fa-trash-alt"></i></button>
+	  </div>
+       </div>
+    </div>
