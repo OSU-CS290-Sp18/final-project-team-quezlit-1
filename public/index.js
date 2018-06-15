@@ -57,7 +57,9 @@ function createFlash(frontInput,backInput){
 		back: backInput
 	};
 	var requestBody = JSON.stringify(flashObj);
-	request.setRequestHeader('Content-Type', 'application/json');
+	request.setRequestHeader(
+	   'Content-Type', 'application/json'
+	);
 	request.addEventListener('load', function (event) {
 		if(event.target.status !== 200){
 			var message = event.target.response;
