@@ -55,8 +55,18 @@ app.post('/addFlash', function (req, res){
 
 app.post('/showBack', function (req, res) {
 	if(req.body && req.body.front){
-		var flashBack = db.flashcards.find({front: req.body.front});
-		res.status(200).send(flashBack);
+		var flashBack = db.collection('flashcards').find({front: req.body.front});
+		flashBack.next(function (err, back){
+			if (err) {
+				res.status(500).send('Error fetching flashcard from DB.');
+			}
+			else if(!back) {
+				next();
+			}
+			else{
+				res.status(200).send(flashBack);
+			}
+	    });
 	}
 	else{
 		res.status(400).send('Requests to this path must contain a JSON body with front field.');
