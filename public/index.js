@@ -81,9 +81,12 @@ function showBack(){
 	back.classList.remove('hidden');
 }
 
+var activeFlash;
+
 flashContainer.addEventListener('click', function (event) {
 	var description;
 	var flash = event.target;
+	activeFlash = flash;
 	var request = new XMLHttpRequest();
 	request.open('POST', '/showBack');
 	//console.log(flash.textContent);
@@ -126,9 +129,8 @@ var deleteFlashButton = document.getElementById('delete-flash');
 deleteFlashButton.addEventListener('click', function (event) {
 	var request = new XMLHttpRequest();
 	request.open('POST', '/deleteFlash');
-	var flash = event.target;
 	var front = {
-		front: flash.textContent
+		front: activeFlash.textContent
 	};
 	var requestBody = JSON.stringify(front);
 	request.setRequestHeader('Content-Type', 'application/json');
@@ -138,7 +140,7 @@ deleteFlashButton.addEventListener('click', function (event) {
 			alert("Error deleting data from the DB.: " + message);
 		}
 		else{
-			flashContainer.removeChild(flash);
+			flashContainer.removeChild(activeFlash);
 			closeFlashBack();
 		}
 	});

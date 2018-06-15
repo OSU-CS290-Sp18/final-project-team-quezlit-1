@@ -54,6 +54,8 @@ app.post('/addFlash', function (req, res){
 });
 
 app.post('/deleteFlash', function (req, res) {
+	console.log('body: ', req.body);
+	console.log('front: ', req.body.front);
 	if(req.body && req.body.front){
 		db.collection('flashcards').deleteOne({
 			front: req.body.front
