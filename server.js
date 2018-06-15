@@ -53,13 +53,25 @@ app.post('/addFlash', function (req, res){
 	}
 });
 
+app.post('/deleteFlash', function (req, res) {
+	if(req.body && req.body.front){
+		db.collection('flashcards').deleteOne({
+			front: req.body.front
+		});
+		res.status(200).send('Flashcard delete successful');
+	}
+	else{
+		res.status(400).send('Requests to this path must contain a JSON body with front field.');
+	}
+});
+
 app.post('/showBack', function (req, res, next) {
 	//console.log('body: ', req.body);
 	//console.log('front: ', req.body.front);
 	if(req.body && req.body.front){
 		var flashBack = db.collection('flashcards').find({front: req.body.front});
 		flashBack.next(function (err, back){
-			console.log('back: ', back);
+			//console.log('back: ', back);
 			if (err) {
 				res.status(500).send('Error fetching flashcard from DB.');
 			}

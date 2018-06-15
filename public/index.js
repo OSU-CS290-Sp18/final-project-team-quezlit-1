@@ -86,7 +86,7 @@ flashContainer.addEventListener('click', function (event) {
 	var flash = event.target;
 	var request = new XMLHttpRequest();
 	request.open('POST', '/showBack');
-	console.log(flash.textContent);
+	//console.log(flash.textContent);
 	var front = {
 		front: flash.textContent
 	};
@@ -121,4 +121,25 @@ function closeFlashBack(){
 	flashBack.classList.add('hidden');
 }
 
-//var deleteFlashButton = document.getElementById('delete-flash')
+var deleteFlashButton = document.getElementById('delete-flash');
+
+deleteFlashButton.addEventListener('click', function (event) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/deleteFlash');
+	var flash = event.target;
+	var front = {
+		front: flash.textContent
+	};
+	var requestBody = JSON.stringify(front);
+	request.setRequestHeader('Content-Type', 'application/json');
+	request.addEventListener('load', function (event) {
+		if(event.target.status !== 200){
+			var message = event.target.response;
+			alert("Error deleting data from the DB.: " + message);
+		}
+		else{
+			flashContainer.removeChild(flash);
+		}
+	});
+});
+
